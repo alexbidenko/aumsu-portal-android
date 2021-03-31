@@ -1,0 +1,195 @@
+<resources>
+    <string name="app_name">AUMSU</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Главная</string>
+    <string name="menu_gallery">Галерея</string>
+    <string name="menu_slideshow">Новости</string>
+    <string name="menu_tools">Приемная комиссия</string>
+    <string name="menu_share">Об университете</string>
+    <string name="menu_send">Сообщение</string>
+    <string name="about_text">Федеральное государственное бюджетное образовательное учреждение высшего образования «Государственный морской университет имени адмирала Ф.Ф. Ушакова» является крупнейшим учебным заведением водного транспорта и единственным высшим учебным заведением на Юге России, выпускающим морских специалистов для судоходных компаний, судостроительных и судоремонтных заводов, предприятий водного транспорта, портов и транспортных терминалов.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="committee_about"><![CDATA[
+    <div class="item-page">
+	    <h2>
+			<a href="http://www.aumsu.ru/science/8-glavnaya-stranitsa/574-contacts">Контакты</a>
+		</h2>
+        <p style="text-align: justify;">
+            <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">Федеральное государственное образовательное учреждение высшего образования "Государственный морской университет имени адмирала Ф.Ф. Ушакова»</span>
+        </p>
+        <br />
+        <p style="text-align: justify;">
+            <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">
+                <strong>Адрес :</strong>
+                353918, г. Новороссийск, пр-т Ленина, 93
+            </span>
+        </p>
+        <br />
+        <p style="text-align: justify;">
+            <strong>
+                <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">Приемная руководителя:</span>
+            </strong>
+        </p>
+        <p style="text-align: justify;">
+            <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">
+                <i>телефон:</i>
+                <a href="tel:8 (8617) 76-78-00">8 (8617) 76-78-00</a>,
+                <a href="tel:8 (8617) 71-75-25">8 (8617) 71-75-25</a>
+            </span>
+        </p>
+    <p style="text-align: justify;">
+        <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">
+            <i>e-mail:</i>
+            <a href="mailto:mail@nsma.ru">mail@nsma.ru</a>
+        </span>
+    </p>
+    <br />
+    <p style="text-align: justify;">
+        <strong>
+            <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">Приемная комиссия:</span>
+        </strong>
+    </p>
+    <p style="text-align: justify;">
+        <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">
+            <i>телефон: </i>
+            <a href="tel:8 (8617) 76-78-10">8 (8617) 76-78-10</a>,
+            <a href="tel:8 (8617) 71-63-03">8 (8617) 71-63-03</a>
+        </span>
+    </p>
+    <p style="text-align: justify;">
+        <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">
+            <i>e-mail:</i>
+            <a href="pcom@nsma.ru">pcom@nsma.ru</a>
+        </span>
+    </p>
+    <br />
+    <p style="text-align: justify;">
+        <strong>
+            <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">Деканат ФЭВТиС:</span>
+        </strong>
+    </p>
+    <p style="text-align: justify;">
+        <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">
+            <i>телефон:</i>
+            <a href="tel:8 (8617) 76-78-25">8 (8617) 76-78-25</a>
+        </span>
+    </p>
+    <br />
+    <p style="text-align: justify;">
+        <strong>
+            <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">Деканат СМФ</span>
+        </strong>
+    </p>
+    <p style="text-align: justify;">
+        <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">
+            <i>телефон:</i>
+            <a href="tel:8 (8617) 76-78-87">8 (8617) 76-78-87</a>
+        </span>
+    </p>
+    <br />
+    <p style="text-align: justify;">
+        <strong>
+            <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">Институт морского транспортного менеджмента, экономики и права</span>
+        </strong>
+    </p>
+    <p style="text-align: justify;">
+        <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">
+            <i>телефон:</i>
+            <a href="tel:8 (8617) 76-78-45">8 (8617) 76-78-45</a>,
+            <a href="tel:8 (8617) 76-79-45">8 (8617) 76-79-45</a>
+        </span>
+    </p>
+    <br />
+    <p style="text-align: justify;">
+        <strong>
+            <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">Заочный факультет</span>
+        </strong>
+    </p>
+    <p style="text-align: justify;">
+        <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">
+            <i>телефон:</i>
+            <a href="tel:8 (8617) 76-78-54">8 (8617) 76-78-54</a>
+        </span>
+    </p>
+    <p style="text-align: justify;">
+        <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">e-mail:</span>
+        <a href="mailto:zf@nsma.ru">zf@nsma.ru</a>
+    </p>
+    <br />
+    <p style="text-align: justify;">
+        <strong>
+            <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">Морской колледж</span>
+        </strong>
+    </p>
+    <p style="text-align: justify;">
+        <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">
+            <i>телефон:</i>
+            <a href="tel:8 (8617) 76-79-19">8 (8617) 76-79-19</a>
+        </span>
+    </p>
+    <br />
+    <p style="text-align: justify;">
+        <strong>
+            <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">Транспортный коледж</span>
+        </strong>
+    </p>
+    <p style="text-align: justify;">
+        <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">
+            <i>Телефон:</i>
+        </span>
+        <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">
+            <a href="tel:8 (9887) 65-30-55">8 (9887) 65-30-55</a>
+        </span>
+    </p>
+    <p style="text-align: justify;">
+        <a href="http://www.aumsu.ru/science/8-glavnaya-stranitsa/546-transportnyj-kolledzh">
+            <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">
+                <span style="color: #333333;">
+                    <i>Сайт</i>
+                </span>
+            </span>
+        </a>
+    </p>
+    <p style="text-align: justify;">
+        <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">
+            <span style="color: #333333;">
+                <span style="color: #333333;">e-mail:</span>
+            </span>
+            <a href="mailto:tk@nsma.ru">tk@nsma.ru</a>
+        </span>
+    </p>
+    <br />
+    <p style="text-align: justify;">
+        <strong>
+            <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">Институт повышения квалификации</span>
+        </strong>
+    </p>
+    <p style="text-align: justify;">
+        <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">
+            <i>телефон:</i>
+            <a href="tel:8 (8617) 76-79-00">8 (8617) 76-79-00</a>
+        </span>
+        <br />
+        <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">
+            <i>факс:</i>
+            <a href="tel:8 (8617) 71-64-04">8 (8617) 71-64-04</a>
+        </span>
+    </p>
+    <p style="text-align: justify;">
+        <span style="font-size: 14pt; font-family: arial, helvetica, sans-serif;">
+            <i>сайт:</i>
+            <a href="ipk.aumsu.ru">ipk.aumsu.ru</a>
+        </span>
+    </p>
+</div>]]></string>
+    <string name="photo_urls">[{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"},{"photoUrl":"http://www.aumsu.ru/images/banners/thumbs/123123213123213213.JPG"}]</string>
+</resources>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Федеральное государственное бюджетное образовательное учреждение высшего образования «Государственный морской университет имени адмирала Ф.Ф. Ушакова» является крупнейшим учебным заведением водного транспорта и единственным высшим учебным заведением на Юге России, выпускающим морских специалистов для судоходных компаний, судостроительных и судоремонтных заводов, предприятий водного транспорта, портов и транспортных терминалов."
+            android:layout_marginBottom="8dp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/image_1"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="В соответствии с лицензией Министерства образования и науки России Университет ведет подготовку по программам среднего общего, среднего профессионального, высшего и дополнительного образования. Государственные дипломы и сертификаты Университета соответствуют требованиям международных Конвенций и признаются всеми странами мира. По морским специальностям Университет аккредитован в Совете Европы и Международной морской организации."
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Университет готовит кадры по 30 специальностям и направлениям подготовки высшего образования, 6-ти специальностям СПО. 3 института, 5 факультетов, 27 кафедр, филиалы в г. Ростове-на-Дону, г. Севастополе. Для организации учебного процесса в Университете имеются учебно-лабораторный комплекс с блоком поточных аудиторий и три учебных корпуса, более 500 лабораторий и учебных классов, электронный читальный зал, библиотека с книжным фондом около 400 тыс. экземпляров."
+            android:layout_marginBottom="8dp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/image_2"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Университет располагает современным комплексом тренажеров и симуляторов, имитирующих судовое оборудование. В том числе тренажер управления и маневрирования судном, тренажеры систем связи и электронной картографии, применяются современные образовательные дистанционные технологии. На базе Института повышения квалификации организованы и постоянно действуют курсы повышения квалификации судового персонала (более 150 видов подготовки). Ведется подготовка научно-педагогических кадров, работает диссертационный совет по защите кандидатских и докторских диссертаций."
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="В Университете работает более 300 преподавателей, среди них профессоров и докторов - 43, доцентов и кандидатов наук - 198."
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Сегодня Университет представляет собой современный научно-образовательный комплекс, осуществляющий подготовку кадров для транспортной отрасли экономики страны по полному циклу подготовки: школа-колледж-ВУЗ-аспирантура-докторантура."
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="В Университете обучается более 7 тысяч человек. За время своего существования было подготовлено более 35 000 специалистов."
+            android:layout_marginBottom="8dp"/>
+
+    </LinearLayout>
+
+</ScrollView>
