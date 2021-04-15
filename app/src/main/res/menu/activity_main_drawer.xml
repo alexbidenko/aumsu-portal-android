@@ -17,25 +17,17 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_slideshow" />
         <item
-            android:id="@+id/nav_tools"
-            android:icon="@drawable/ic_menu_account_balance"
-            android:title="@string/menu_tools" />
-        <item
-            android:id="@+id/nav_share"
-            android:icon="@drawable/ic_menu_assignment"
-            android:title="@string/menu_share" />
-        <item
             android:id="@+id/nav_send"
             android:icon="@drawable/ic_menu_send"
             android:title="@string/menu_send" />
     </group>
 
-    <item android:title="Ещё">
+    <item android:title="@string/menu_more">
         <menu>
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_menu_exit_to_app_24dp"
-                android:title="Выйти" />
+                android:title="@string/menu_logout" />
         </menu>
     </item>
 
