@@ -1,11 +1,11 @@
-package ru.aumsu.www.application.retrofit
+package admire.aumsu.portal.application.retrofit
 
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
-import ru.aumsu.www.application.models.Authorization
-import ru.aumsu.www.application.models.Message
-import ru.aumsu.www.application.models.User
+import admire.aumsu.portal.application.models.Authorization
+import admire.aumsu.portal.application.models.Message
+import admire.aumsu.portal.application.models.User
 
 interface RequestAPI {
 

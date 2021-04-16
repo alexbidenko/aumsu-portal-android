@@ -1,4 +1,4 @@
-package ru.aumsu.www.application.models
+package admire.aumsu.portal.application.models
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

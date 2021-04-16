@@ -1,4 +1,4 @@
-package ru.aumsu.www.application.models
+package admire.aumsu.portal.application.models
 
 class Message (
     val from: Int,

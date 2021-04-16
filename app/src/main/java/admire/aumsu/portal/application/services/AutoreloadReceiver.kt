@@ -1,4 +1,4 @@
-package ru.aumsu.www.application.services
+package admire.aumsu.portal.application.services
 
 import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
