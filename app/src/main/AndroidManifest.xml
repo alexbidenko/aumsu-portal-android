@@ -39,7 +39,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="admire.aumsu.portal.application.LoginActivity" />
+        <activity
+            android:name="admire.aumsu.portal.application.LoginActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity
+            android:name="admire.aumsu.portal.application.RegistrationActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
             android:name="admire.aumsu.portal.application.MainActivity"
             android:label="@string/app_name"

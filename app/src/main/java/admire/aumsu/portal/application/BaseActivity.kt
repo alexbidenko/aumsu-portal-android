@@ -33,6 +33,16 @@ abstract class BaseActivity : AppCompatActivity() {
         )
     }
 
+    fun startActivityWithTransition(
+        intent: Intent
+    ) {
+        startActivity(intent)
+        overridePendingTransition(
+            forwardAnimation.open,
+            forwardAnimation.close
+        )
+    }
+
     class PendingTransitionAnimation internal constructor(var open: Int, var close: Int)
 
     fun getRetrofit(): Retrofit {
@@ -50,6 +60,9 @@ abstract class BaseActivity : AppCompatActivity() {
     companion object {
         const val USER_TOKEN_KEY = "user_token"
         const val USER_DATA_KEY = "user_data"
+
+        const val AUTHORIZATION_LOGIN_KEY = "authorization_login_key"
+        const val AUTHORIZATION_PASSWORD_KEY = "authorization_password_key"
 
         var userData: User? = null
     }

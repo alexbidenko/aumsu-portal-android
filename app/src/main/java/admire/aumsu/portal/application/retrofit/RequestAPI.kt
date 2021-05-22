@@ -12,6 +12,9 @@ interface RequestAPI {
     @POST("login")
     fun authorization(@Body request: Authorization): Call<User>
 
+    @POST("registration")
+    fun registration(@Body request: User): Call<User>
+
     @GET("messages/last")
     fun getLastMessage(@Header("Authorization") token: String): Call<Message>
 

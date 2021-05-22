@@ -11,6 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import admire.aumsu.portal.application.models.Authorization
+import android.content.Intent
 
 class LoginActivity : BaseActivity() {
 
@@ -18,8 +19,20 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        if (savedInstanceState == null) intent.extras?.let {
+            login.setText(it.getString(AUTHORIZATION_LOGIN_KEY))
+            password.setText(it.getString(AUTHORIZATION_PASSWORD_KEY))
+        }
+
         login_button.setOnClickListener {
             authorization()
+        }
+
+        to_registration_button.setOnClickListener {
+            val intent = Intent(this, RegistrationActivity::class.java)
+            intent.putExtra(AUTHORIZATION_LOGIN_KEY, login.text.toString())
+            intent.putExtra(AUTHORIZATION_PASSWORD_KEY, password.text.toString())
+            startActivityWithTransition(intent)
         }
     }
 

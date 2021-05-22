@@ -8,12 +8,17 @@
     <string name="system_alert_send_success">Сообщение успешно отправлено</string>
     <string name="system_alert_agree">Принято</string>
     <string name="system_alert_confirm">Ок</string>
-    <string name="system_response_news_error">Ошибка авторизации, повторите попытку позже</string>
-    <string name="system_response_authorisation_error">При запросе новостей произошла ошибка, повторите позже</string>
+    <string name="system_response_news_error">При запросе новостей произошла ошибка, повторите позже</string>
+    <string name="system_response_authorisation_error">Ошибка авторизации, повторите попытку позже</string>
+    <string name="system_response_registration_error">Ошибка регистрации, повторите попытку позже</string>
     <string name="system_response_authorisation_incorrect">Неверный логин или пароль</string>
     <string name="system_response_send_message_error">Ошибка отправки новости, повторите попытку позже</string>
     <string name="system_notification_channel_name">Сообщения университета</string>
     <string name="system_notification_channel_description">Канал для получения сообщений от университета</string>
+    <string name="system_feedback_address">alexbidenko1998@gmail.com</string>
+    <string name="system_feedback_subject">[FEEDBACK] Обратная связь об использовании приложения Science Report</string>
+    <string name="system_feedback_preview">Опишите вашу проблему, пожелание или отзыв:</string>
+    <string name="system_feedback_chooser">Выберите приложение для отправки обратной связи:</string>
 
     <string name="menu_home">Главная</string>
     <string name="menu_gallery">Галерея</string>
@@ -21,6 +26,7 @@
     <string name="menu_send">Сообщение</string>
     <string name="menu_more">Ещё</string>
     <string name="menu_logout">Выйти</string>
+    <string name="menu_feedback">Обратная связь</string>
     <string name="about_text">Федеральное государственное бюджетное образовательное учреждение высшего образования «Государственный морской университет имени адмирала Ф.Ф. Ушакова» является крупнейшим учебным заведением водного транспорта и единственным высшим учебным заведением на Юге России, выпускающим морских специалистов для судоходных компаний, судостроительных и судоремонтных заводов, предприятий водного транспорта, портов и транспортных терминалов.</string>
 
     <string name="activity_login_welcome">Welcome to Science Report</string>
@@ -29,6 +35,21 @@
     <string name="activity_login_login_hint">Логин</string>
     <string name="activity_login_password_hint">Пароль</string>
     <string name="activity_login_login_action">Войти</string>
+    <string name="activity_login_to_registration">Зарегистрироваться</string>
+
+    <string name="activity_registration_instruction">Регистрация в приложении</string>
+    <string name="activity_registration_login_hint">Логин</string>
+    <string name="activity_registration_first_name_hint">Имя</string>
+    <string name="activity_registration_last_name_hint">Фамилия</string>
+    <string name="activity_registration_patronymic_hint">Отчество</string>
+    <string name="activity_registration_password_hint">Пароль</string>
+    <string name="activity_registration_repeat_password_hint">Повторите пароль</string>
+    <string name="activity_registration_registration_action">Зарегистрироваться</string>
+    <string name="activity_registration_to_login">Войти</string>
+    <string name="activity_registration_error_password">Пароли не совпадают</string>
+    <string name="activity_registration_error_password_short">Пароль слишком короткий (минимум 8 символов)</string>
+    <string name="activity_registration_error_login_short">Логин слишком короткий (минимум 5 символов)</string>
+    <string name="activity_registration_error_data">Проверьте правильность заполнения всех даннных</string>
 
     <string name="fragment_home_header">Шапка приложения</string>
     <string name="fragment_home_university_photo">Фотография университета</string>

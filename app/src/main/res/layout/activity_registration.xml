@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    tools:context=".RegistrationActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:textColor="#ffffff"
+                android:text="@string/activity_registration_instruction"
+                android:layout_marginBottom="20dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:hint="@string/activity_registration_login_hint"
+                android:id="@+id/login"
+                android:textColor="@android:color/white"
+                android:maxLines="1"
+                android:autofillHints="login"
+                android:inputType="text" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:hint="@string/activity_registration_first_name_hint"
+                android:id="@+id/first_name"
+                android:textColor="@android:color/white"
+                android:maxLines="1"
+                android:autofillHints="first_name"
+                android:inputType="text" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:hint="@string/activity_registration_last_name_hint"
+                android:id="@+id/last_name"
+                android:textColor="@android:color/white"
+                android:maxLines="1"
+                android:autofillHints="last_name"
+                android:inputType="text" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:hint="@string/activity_registration_patronymic_hint"
+                android:id="@+id/patronymic"
+                android:textColor="@android:color/white"
+                android:maxLines="1"
+                android:autofillHints="patronymic"
+                android:inputType="text" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:hint="@string/activity_registration_password_hint"
+                android:id="@+id/password"
+                android:textColor="@android:color/white"
+                android:maxLines="1"
+                android:inputType="textPassword"
+                android:autofillHints="password" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:hint="@string/activity_registration_repeat_password_hint"
+                android:id="@+id/repeat_password"
+                android:textColor="@android:color/white"
+                android:maxLines="1"
+                android:inputType="textPassword"
+                android:autofillHints="repeat_password" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_registration_registration_action"
+                android:id="@+id/registration_button"
+                android:textColor="@android:color/white"
+                style="@style/Widget.AppCompat.Button.Borderless"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_registration_to_login"
+                android:id="@+id/to_login_button"
+                android:textColor="@android:color/white"
+                style="@style/Widget.AppCompat.Button.Borderless"/>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

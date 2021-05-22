@@ -24,6 +24,8 @@ import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 import admire.aumsu.portal.application.models.Message
 import admire.aumsu.portal.application.services.MessagesService
+import android.net.Uri
+import android.widget.Toast
 import androidx.navigation.fragment.NavHostFragment
 
 class MainActivity : BaseActivity() {
@@ -92,6 +94,22 @@ class MainActivity : BaseActivity() {
             override fun onDrawerOpened(drawerView: View) {}
 
         })
+
+        navView.menu.findItem(R.id.nav_feedback).setOnMenuItemClickListener {
+            val intent = Intent(Intent.ACTION_SENDTO)
+            intent.type = "text/plain"
+            intent.data = Uri.parse("mailto:")
+            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.system_feedback_address)))
+            intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.system_feedback_subject))
+            intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.system_feedback_preview))
+
+            try {
+                startActivity(Intent.createChooser(intent, getString(R.string.system_feedback_chooser)))
+            } catch (e: Exception){
+                Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+            }
+            true
+        }
 
         if (intent.getStringExtra("fragment") == "news")
             navController.navigate(R.id.nav_slideshow)
