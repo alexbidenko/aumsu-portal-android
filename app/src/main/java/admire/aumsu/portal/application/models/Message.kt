@@ -5,5 +5,6 @@ class Message (
     val title: String,
     val description: String,
     val image: String,
-    val id: Int?
+    val id: Int?,
+    val comments: ArrayList<Comment>?
 )

@@ -24,6 +24,16 @@
         tools:layout="@layout/fragment_news" />
 
     <fragment
+        android:id="@+id/nav_details"
+        android:name="admire.aumsu.portal.application.ui.details.DetailsFragment"
+        android:label="Подробности новости">
+        <argument
+            android:name="messageId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+
+    <fragment
         android:id="@+id/nav_send"
         android:name="admire.aumsu.portal.application.ui.send.SendFragment"
         android:label="@string/menu_send"

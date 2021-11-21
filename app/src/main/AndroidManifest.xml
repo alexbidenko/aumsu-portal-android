@@ -32,7 +32,8 @@
 
         <activity
             android:name="admire.aumsu.portal.application.SplashActivity"
-            android:theme="@style/AppTheme.Launcher">
+            android:theme="@style/AppTheme.Launcher"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -21,14 +21,14 @@ import admire.aumsu.portal.application.retrofit.RequestAPI
 
 class NewsFragment : Fragment() {
 
-    private lateinit var newsViewModel: NewsViewModel
+    private lateinit var detailsViewModel: NewsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        newsViewModel =
+        detailsViewModel =
             ViewModelProvider(this).get(NewsViewModel::class.java)
         return inflater.inflate(R.layout.fragment_news, container, false)
     }

@@ -4,6 +4,7 @@ import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
 import admire.aumsu.portal.application.models.Authorization
+import admire.aumsu.portal.application.models.Comment
 import admire.aumsu.portal.application.models.Message
 import admire.aumsu.portal.application.models.User
 
@@ -20,6 +21,12 @@ interface RequestAPI {
 
     @GET("messages")
     fun getMessages(@Header("Authorization") token: String): Call<ArrayList<Message>>
+
+    @GET("messages/{id}")
+    fun getMessageById(@Path("id") id: Int, @Header("Authorization") token: String): Call<Message>
+
+    @POST("messages/comment")
+    fun sendComment(@Body request: Comment, @Header("Authorization") token: String): Call<Comment>
 
     @Multipart
     @POST("messages")

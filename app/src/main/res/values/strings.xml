@@ -16,7 +16,7 @@
     <string name="system_notification_channel_name">Сообщения университета</string>
     <string name="system_notification_channel_description">Канал для получения сообщений от университета</string>
     <string name="system_feedback_address">alexbidenko1998@gmail.com</string>
-    <string name="system_feedback_subject">[FEEDBACK] Обратная связь об использовании приложения Science Report</string>
+    <string name="system_feedback_subject">[FEEDBACK] Обратная связь об использовании приложения Science and Social Report</string>
     <string name="system_feedback_preview">Опишите вашу проблему, пожелание или отзыв:</string>
     <string name="system_feedback_chooser">Выберите приложение для отправки обратной связи:</string>
 
@@ -29,7 +29,7 @@
     <string name="menu_feedback">Обратная связь</string>
     <string name="about_text">Федеральное государственное бюджетное образовательное учреждение высшего образования «Государственный морской университет имени адмирала Ф.Ф. Ушакова» является крупнейшим учебным заведением водного транспорта и единственным высшим учебным заведением на Юге России, выпускающим морских специалистов для судоходных компаний, судостроительных и судоремонтных заводов, предприятий водного транспорта, портов и транспортных терминалов.</string>
 
-    <string name="activity_login_welcome">Welcome to Science Report</string>
+    <string name="activity_login_welcome">Добро пожаловать Science and Social Report</string>
     <string name="activity_login_logo_description">Логотип университета</string>
     <string name="activity_login_instruction">Вход в приложение</string>
     <string name="activity_login_login_hint">Логин</string>

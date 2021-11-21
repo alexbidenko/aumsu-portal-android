@@ -9,6 +9,9 @@ import kotlinx.android.synthetic.main.news_card.view.*
 import admire.aumsu.portal.application.R
 import admire.aumsu.portal.application.models.Message
 import androidx.core.content.ContextCompat.getColor
+import androidx.core.os.bundleOf
+import androidx.fragment.app.findFragment
+import androidx.navigation.fragment.findNavController
 
 class NewsRecyclerAdapter : RecyclerView.Adapter<NewsRecyclerAdapter.Holder>() {
 
@@ -40,10 +43,10 @@ class NewsRecyclerAdapter : RecyclerView.Adapter<NewsRecyclerAdapter.Holder>() {
             }
             content.text = data.description.removeSurrounding("\"")
 
-//            itemView.setOnClickListener {
-//                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(data.url))
-//                startActivity(itemView.context, browserIntent, null)
-//            }
+            itemView.setOnClickListener {
+                val bundle = bundleOf("messageId" to data.id)
+                itemView.findFragment<NewsFragment>().findNavController().navigate(R.id.nav_details, bundle)
+            }
         }
     }
 }
