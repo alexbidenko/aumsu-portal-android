@@ -16,11 +16,6 @@ abstract class BaseActivity : AppCompatActivity() {
             R.anim.forward_open,
             R.anim.forward_close
         )
-//    private val backAnimation: PendingTransitionAnimation =
-//        PendingTransitionAnimation(
-//            R.anim.back_open,
-//            R.anim.back_close
-//        )
 
     fun startActivity(
         activityClass: Class<*>

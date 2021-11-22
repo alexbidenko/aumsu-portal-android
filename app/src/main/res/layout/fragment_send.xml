@@ -58,11 +58,11 @@
 
     </RelativeLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/fragment_send_button"
-        android:id="@+id/send_button"
-        style="@style/Widget.AppCompat.Button.Borderless"/>
+        android:id="@+id/send_button"/>
 
 </LinearLayout>

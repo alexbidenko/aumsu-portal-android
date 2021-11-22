@@ -21,7 +21,15 @@
         android:id="@+id/nav_slideshow"
         android:name="admire.aumsu.portal.application.ui.news.NewsFragment"
         android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_news" />
+        tools:layout="@layout/fragment_news">
+        <action
+            android:id="@+id/to_details"
+            app:destination="@id/nav_details"
+            app:enterAnim="@anim/forward_open"
+            app:exitAnim="@anim/forward_close"
+            app:popEnterAnim="@anim/back_open"
+            app:popExitAnim="@anim/back_close" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_details"

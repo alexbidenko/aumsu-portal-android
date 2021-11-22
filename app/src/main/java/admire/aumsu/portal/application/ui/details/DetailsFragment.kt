@@ -18,10 +18,12 @@ import admire.aumsu.portal.application.R
 import admire.aumsu.portal.application.models.Comment
 import admire.aumsu.portal.application.models.Message
 import admire.aumsu.portal.application.retrofit.RequestAPI
+import android.graphics.Color
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import okio.Buffer
 
 class DetailsFragment : Fragment() {
 
@@ -46,6 +48,11 @@ class DetailsFragment : Fragment() {
         view.send.setOnClickListener {
             sendComment()
         }
+
+        view.swipe_refresh.setColorSchemeColors(Color.BLUE)
+        view.swipe_refresh.setOnRefreshListener {
+            getMessage()
+        }
     }
 
     private fun getMessage() {
@@ -62,16 +69,20 @@ class DetailsFragment : Fragment() {
             override fun onResponse(call: Call<Message>, response: Response<Message>) {
                 Log.i("Admire", "Response " + response.code())
                 if(response.code() == 200) {
-                    view!!.title.text = response.body()!!.title.removeSurrounding("\"")
-                    view!!.content.text = response.body()!!.description.removeSurrounding("\"")
+                    requireView().title.text = response.body()!!.title.removeSurrounding("\"")
+                    requireView().content.text = response.body()!!.description.removeSurrounding("\"")
                     if (response.body()!!.image == "") {
-                        view!!.title.setTextColor(ContextCompat.getColor(context!!, R.color.black))
-                        view!!.photo.visibility = View.GONE
+                        requireView().title.setTextColor(ContextCompat.getColor(context!!, R.color.black))
+                        requireView().photo.visibility = View.GONE
                     } else {
-                        Glide.with(context!!).load(context!!.getString(R.string.base_url) + "/files/messages/images/" + response.body()!!.image).into(view!!.photo)
+                        Glide.with(context!!).load(context!!.getString(R.string.base_url) + "/files/messages/images/" + response.body()!!.image).into(requireView().photo)
                     }
-                    view!!.comments.layoutManager = LinearLayoutManager(context)
-                    view!!.comments.adapter = DetailsRecyclerAdapter(response.body()!!.comments ?: ArrayList())
+                    requireView().comments.layoutManager = LinearLayoutManager(context)
+                    requireView().comments.adapter = DetailsRecyclerAdapter(response.body()!!.comments ?: ArrayList())
+
+                    requireView().container.visibility = VISIBLE;
+                    requireView().progress.visibility = GONE;
+                    requireView().swipe_refresh.isRefreshing = false
                 }
             }
         })
@@ -98,8 +109,8 @@ class DetailsFragment : Fragment() {
                 if(response.code() == 200) {
                     val comment = response.body()!!
                     comment.user = userData!!
-                    (view!!.comments.adapter as DetailsRecyclerAdapter).data.add(comment)
-                    view!!.comments.adapter!!.notifyDataSetChanged()
+                    (requireView().comments.adapter as DetailsRecyclerAdapter).data.add(comment)
+                    requireView().comments.adapter!!.notifyDataSetChanged()
                     requireView().comment.setText("")
                 }
             }

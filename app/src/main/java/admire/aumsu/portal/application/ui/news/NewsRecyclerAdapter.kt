@@ -45,7 +45,7 @@ class NewsRecyclerAdapter : RecyclerView.Adapter<NewsRecyclerAdapter.Holder>() {
 
             itemView.setOnClickListener {
                 val bundle = bundleOf("messageId" to data.id)
-                itemView.findFragment<NewsFragment>().findNavController().navigate(R.id.nav_details, bundle)
+                itemView.findFragment<NewsFragment>().findNavController().navigate(R.id.to_details, bundle)
             }
         }
     }

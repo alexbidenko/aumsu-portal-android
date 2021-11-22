@@ -18,6 +18,7 @@ import admire.aumsu.portal.application.BaseActivity.Companion.userData
 import admire.aumsu.portal.application.R
 import admire.aumsu.portal.application.models.Message
 import admire.aumsu.portal.application.retrofit.RequestAPI
+import android.view.View.GONE
 
 class NewsFragment : Fragment() {
 
@@ -40,7 +41,14 @@ class NewsFragment : Fragment() {
         view.news_line.adapter = NewsRecyclerAdapter()
         Log.i("Admire", "onViewCreated")
 
-        getMessages()
+        if (detailsViewModel.isDataRequested) messagesLoad()
+        else getMessages()
+    }
+    
+    private fun messagesLoad() {
+        (requireView().news_line.adapter as NewsRecyclerAdapter).data = detailsViewModel.messages
+        requireView().news_line.adapter?.notifyDataSetChanged()
+        requireView().progress.visibility = GONE
     }
 
     private fun getMessages() {
@@ -57,8 +65,10 @@ class NewsFragment : Fragment() {
             override fun onResponse(call: Call<ArrayList<Message>>, response: Response<ArrayList<Message>>) {
                 Log.i("Admire", "Response " + response.code())
                 if(response.code() == 200) {
-                    (view!!.news_line.adapter as NewsRecyclerAdapter).data = response.body()!!
-                    view!!.news_line.adapter?.notifyDataSetChanged()
+                    detailsViewModel.messages = response.body()!!
+                    detailsViewModel.isDataRequested = true
+
+                    messagesLoad()
                 }
             }
         })

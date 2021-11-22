@@ -27,6 +27,7 @@ import java.io.File
 class SendFragment : Fragment() {
 
     private lateinit var sendViewModel: SendViewModel
+    private var isRequest = false
     private var image: File? = null
 
     override fun onCreateView(
@@ -66,6 +67,8 @@ class SendFragment : Fragment() {
     }
 
     private fun sendMessage() {
+        if (this.isRequest) return
+        this.isRequest = true
         val service = (activity as BaseActivity).getRetrofit().create(RequestAPI::class.java)
 
         var filePart: MultipartBody.Part? = null
@@ -85,6 +88,7 @@ class SendFragment : Fragment() {
         )
         messages.enqueue(object : Callback<Message> {
             override fun onFailure(call: Call<Message>, t: Throwable) {
+                this@SendFragment.isRequest = false
                 Toast.makeText(context, getString(R.string.system_response_send_message_error), Toast.LENGTH_LONG).show()
             }
 
@@ -93,6 +97,7 @@ class SendFragment : Fragment() {
                 response: Response<Message>
             ) {
                 if (response.code() == 200) {
+                    this@SendFragment.isRequest = false
                     this@SendFragment.onSendSuccess()
                 } else {
                     Log.i("Admire", "Error: " + response.code() + " | " + response.errorBody()?.string())
