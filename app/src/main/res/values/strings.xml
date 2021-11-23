@@ -29,7 +29,7 @@
     <string name="menu_feedback">Обратная связь</string>
     <string name="about_text">Федеральное государственное бюджетное образовательное учреждение высшего образования «Государственный морской университет имени адмирала Ф.Ф. Ушакова» является крупнейшим учебным заведением водного транспорта и единственным высшим учебным заведением на Юге России, выпускающим морских специалистов для судоходных компаний, судостроительных и судоремонтных заводов, предприятий водного транспорта, портов и транспортных терминалов.</string>
 
-    <string name="activity_login_welcome">Добро пожаловать Science and Social Report</string>
+    <string name="activity_login_welcome">Добро пожаловать в Science and Social Report</string>
     <string name="activity_login_logo_description">Логотип университета</string>
     <string name="activity_login_instruction">Вход в приложение</string>
     <string name="activity_login_login_hint">Логин</string>

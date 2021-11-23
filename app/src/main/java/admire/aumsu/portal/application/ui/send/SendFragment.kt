@@ -22,6 +22,9 @@ import admire.aumsu.portal.application.MainActivity
 import admire.aumsu.portal.application.R
 import admire.aumsu.portal.application.models.Message
 import admire.aumsu.portal.application.retrofit.RequestAPI
+import android.view.View.GONE
+import android.view.View.VISIBLE
+import kotlinx.android.synthetic.main.fragment_send.*
 import java.io.File
 
 class SendFragment : Fragment() {
@@ -69,6 +72,7 @@ class SendFragment : Fragment() {
     private fun sendMessage() {
         if (this.isRequest) return
         this.isRequest = true
+        progress.visibility = VISIBLE
         val service = (activity as BaseActivity).getRetrofit().create(RequestAPI::class.java)
 
         var filePart: MultipartBody.Part? = null
@@ -88,6 +92,7 @@ class SendFragment : Fragment() {
         )
         messages.enqueue(object : Callback<Message> {
             override fun onFailure(call: Call<Message>, t: Throwable) {
+                progress.visibility = GONE
                 this@SendFragment.isRequest = false
                 Toast.makeText(context, getString(R.string.system_response_send_message_error), Toast.LENGTH_LONG).show()
             }
@@ -96,8 +101,9 @@ class SendFragment : Fragment() {
                 call: Call<Message>,
                 response: Response<Message>
             ) {
+                progress.visibility = GONE
+                this@SendFragment.isRequest = false
                 if (response.code() == 200) {
-                    this@SendFragment.isRequest = false
                     this@SendFragment.onSendSuccess()
                 } else {
                     Log.i("Admire", "Error: " + response.code() + " | " + response.errorBody()?.string())

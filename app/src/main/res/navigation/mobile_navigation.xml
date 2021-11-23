@@ -48,6 +48,12 @@
         tools:layout="@layout/fragment_send" />
 
     <fragment
+        android:id="@+id/nav_profile"
+        android:name="admire.aumsu.portal.application.ui.profile.ProfileFragment"
+        android:label="Профиль"
+        tools:layout="@layout/fragment_profile"/>
+
+    <fragment
         android:id="@+id/nav_logout"
         android:name="admire.aumsu.portal.application.ui.logout.LogoutFragment"
         android:label="Выйти"/>

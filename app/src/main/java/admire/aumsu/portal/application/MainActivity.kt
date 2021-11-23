@@ -59,17 +59,19 @@ class MainActivity : BaseActivity() {
                 R.id.nav_gallery,
                 R.id.nav_slideshow,
                 R.id.nav_send,
-                R.id.nav_logout
+                R.id.nav_logout,
+                R.id.nav_profile
             ), drawerLayout
         )
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        if (userData!!.avatar != "")
-            Glide.with(this).load(getString(R.string.base_url) + "/files/avatars/" + userData!!.avatar).circleCrop().into(navView.getHeaderView(0).avatar)
-        navView.getHeaderView(0).name.text = userData!!.firstName + " " + userData!!.lastName
-        navView.getHeaderView(0).email.text = userData!!.login
+        updateNavHeader()
+        navView.getHeaderView(0).nav_header.setOnClickListener {
+            navController.navigate(R.id.nav_profile)
+            drawerLayout.close()
+        }
 
         if(userData!!.status == "user") {
             navView.menu.findItem(R.id.nav_send).isVisible = false
@@ -113,6 +115,14 @@ class MainActivity : BaseActivity() {
 
         if (intent.getStringExtra("fragment") == "news")
             navController.navigate(R.id.nav_slideshow)
+    }
+
+    fun updateNavHeader() {
+        val navView: NavigationView = findViewById(R.id.nav_view)
+        if (userData!!.avatar != "")
+            Glide.with(this).load(getString(R.string.base_url) + "/files/avatars/" + userData!!.avatar).circleCrop().into(navView.getHeaderView(0).avatar)
+        navView.getHeaderView(0).name.text = userData!!.firstName + " " + userData!!.lastName
+        navView.getHeaderView(0).email.text = userData!!.login
     }
 
     override fun onResume() {
