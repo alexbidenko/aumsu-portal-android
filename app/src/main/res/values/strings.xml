@@ -6,7 +6,7 @@
 
     <string name="system_alert_message_title">Сообщение</string>
     <string name="system_alert_send_success">Сообщение успешно отправлено</string>
-    <string name="system_alert_agree">Принято</string>
+    <string name="system_alert_agree">Открыть</string>
     <string name="system_alert_confirm">Ок</string>
     <string name="system_response_news_error">При запросе новостей произошла ошибка, повторите позже</string>
     <string name="system_response_authorisation_error">Ошибка авторизации, повторите попытку позже</string>
@@ -49,11 +49,11 @@
     <string name="activity_registration_error_password">Пароли не совпадают</string>
     <string name="activity_registration_error_password_short">Пароль слишком короткий (минимум 8 символов)</string>
     <string name="activity_registration_error_login_short">Логин слишком короткий (минимум 5 символов)</string>
-    <string name="activity_registration_error_data">Проверьте правильность заполнения всех даннных</string>
+    <string name="activity_registration_error_data">Проверьте правильность заполнения всех данных</string>
 
     <string name="fragment_home_header">Шапка приложения</string>
     <string name="fragment_home_university_photo">Фотография университета</string>
-    <string name="fragment_home_to_gallery">Галлерея</string>
+    <string name="fragment_home_to_gallery">Галерея</string>
     <string name="fragment_home_to_news">Новости</string>
 
     <string name="fragment_send_button">Отправить</string>

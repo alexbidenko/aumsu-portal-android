@@ -51,7 +51,7 @@
                 android:textColor="@android:color/white"
                 android:maxLines="1"
                 android:autofillHints="first_name"
-                android:inputType="text" />
+                android:inputType="text|textCapWords" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -62,7 +62,7 @@
                 android:textColor="@android:color/white"
                 android:maxLines="1"
                 android:autofillHints="last_name"
-                android:inputType="text" />
+                android:inputType="text|textCapWords" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -73,7 +73,7 @@
                 android:textColor="@android:color/white"
                 android:maxLines="1"
                 android:autofillHints="patronymic"
-                android:inputType="text" />
+                android:inputType="text|textCapWords" />
 
             <EditText
                 android:layout_width="match_parent"

@@ -6,7 +6,6 @@ import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AlertDialog
@@ -19,10 +18,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.nav_header_main.view.*
-import admire.aumsu.portal.application.models.Message
 import admire.aumsu.portal.application.services.MessagesService
 import android.net.Uri
 import android.widget.Toast
@@ -31,7 +27,6 @@ import androidx.navigation.fragment.NavHostFragment
 class MainActivity : BaseActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private var messagesDisposable: Disposable? = null
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -130,31 +125,6 @@ class MainActivity : BaseActivity() {
         val notificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.cancelAll()
-        MessagesService.isAppRunning = true
-        messagesDisposable = MessagesService.messagesObservable
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { message, _ -> showMessage(message) }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        MessagesService.isAppRunning = false
-        messagesDisposable?.dispose()
-    }
-
-    private fun showMessage(message: Message) {
-        val sp = getSharedPreferences(packageName, Context.MODE_PRIVATE)
-        if(message.id != null && message.id > sp.getInt(LAST_MESSAGE_ID_KEY, -1)) {
-            sp.edit().putInt(LAST_MESSAGE_ID_KEY, message.id).apply()
-
-            Log.i("Admire", "show message")
-            AlertDialog.Builder(this)
-                .setMessage(message.title)
-                .setTitle(getString(R.string.system_alert_message_title))
-                .setPositiveButton(getString(R.string.system_alert_agree)) { _, _ ->
-                    run {}
-                }.create().show()
-        }
     }
 
     fun messageSendDialog() {

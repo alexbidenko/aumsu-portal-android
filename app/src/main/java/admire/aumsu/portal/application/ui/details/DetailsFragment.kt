@@ -19,6 +19,7 @@ import admire.aumsu.portal.application.models.Comment
 import admire.aumsu.portal.application.models.Message
 import admire.aumsu.portal.application.retrofit.RequestAPI
 import android.graphics.Color
+import android.text.method.LinkMovementMethod
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.core.content.ContextCompat
@@ -28,6 +29,7 @@ import com.bumptech.glide.Glide
 class DetailsFragment : Fragment() {
 
     private lateinit var detailsViewModel: DetailsViewModel
+    private var isRequest = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -89,7 +91,9 @@ class DetailsFragment : Fragment() {
     }
 
     private fun sendComment() {
-        if (requireView().comment.text.toString().trim() == "") return;
+        if (isRequest || requireView().comment.text.toString().trim() == "") return;
+        if (!checkCorrectMessage()) return;
+        isRequest = true
 
         Log.i("Admire", "Prepare")
         val service = (activity as BaseActivity).getRetrofit().create(RequestAPI::class.java)
@@ -102,18 +106,37 @@ class DetailsFragment : Fragment() {
         messages.enqueue(object : Callback<Comment> {
             override fun onFailure(call: Call<Comment>, t: Throwable) {
                 Toast.makeText(context, getString(R.string.system_response_news_error), Toast.LENGTH_LONG).show()
+                isRequest = false
             }
 
             override fun onResponse(call: Call<Comment>, response: Response<Comment>) {
                 Log.i("Admire", "Response " + response.code())
+                isRequest = false
                 if(response.code() == 200) {
                     val comment = response.body()!!
                     comment.user = userData!!
-                    (requireView().comments.adapter as DetailsRecyclerAdapter).data.add(comment)
-                    requireView().comments.adapter!!.notifyDataSetChanged()
+                    val data = (requireView().comments.adapter as DetailsRecyclerAdapter).data
+                    data.add(comment)
+                    requireView().comments.adapter!!.notifyItemInserted(data.size)
                     requireView().comment.setText("")
                 }
             }
         })
+    }
+
+    private fun checkCorrectMessage(): Boolean {
+        val words = arrayOf(
+            "блять",
+            "блядь",
+            "хуйня",
+            "пиздец",
+            "пизда"
+        )
+        val result = !words.any {
+            requireView().comment.text.toString().lowercase().contains(it)
+        }
+        if (!result)
+            Toast.makeText(context, "В приложении запрещено использование нецензурной лексики", Toast.LENGTH_LONG).show()
+        return result
     }
 }

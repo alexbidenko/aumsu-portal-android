@@ -1,19 +1,21 @@
 package admire.aumsu.portal.application.services
 
 import admire.aumsu.portal.application.BaseActivity
-import admire.aumsu.portal.application.MainActivity
 import admire.aumsu.portal.application.R
+import admire.aumsu.portal.application.SplashActivity
 import admire.aumsu.portal.application.models.Message
 import admire.aumsu.portal.application.models.User
 import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.app.PendingIntent.FLAG_CANCEL_CURRENT
+import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.os.IBinder
 import android.util.Log
-import androidx.core.app.JobIntentService
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.google.gson.Gson
@@ -23,9 +25,8 @@ import com.pusher.client.channel.Channel
 import com.pusher.client.connection.ConnectionEventListener
 import com.pusher.client.connection.ConnectionState
 import com.pusher.client.connection.ConnectionStateChange
-import io.reactivex.subjects.SingleSubject
 
-class MessagesService : JobIntentService() {
+class MessagesService : Service() {
 
     private val pusher: Pusher
     private lateinit var channel: Channel
@@ -54,23 +55,6 @@ class MessagesService : JobIntentService() {
         }, ConnectionState.ALL)
     }
 
-    override fun onCreate() {
-        super.onCreate()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val mChannel = NotificationChannel(
-                CHANNEL_ID,
-                getString(R.string.system_notification_channel_name),
-                importance
-            )
-            mChannel.description = getString(R.string.system_notification_channel_description)
-            val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(mChannel)
-        }
-
-        updateConnection()
-    }
-
     @SuppressLint("CheckResult")
     private fun createConnect(channel: Channel) {
         Log.i("Admire", "createConnect")
@@ -85,42 +69,77 @@ class MessagesService : JobIntentService() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        return START_STICKY
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val importance1 = NotificationManager.IMPORTANCE_DEFAULT
+            val mChannel1 = NotificationChannel(
+                MAIN_CHANNEL_ID,
+                "Системные сообщения",
+                importance1
+            )
+            mChannel1.description = "Канал для системных сообщений приложения"
+            mChannel1.setSound(null, null)
+            val notificationManager1 = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager1.createNotificationChannel(mChannel1)
+
+            val importance2 = NotificationManager.IMPORTANCE_DEFAULT
+            val mChannel2 = NotificationChannel(
+                CHANNEL_ID,
+                getString(R.string.system_notification_channel_name),
+                importance2
+            )
+            mChannel2.description = getString(R.string.system_notification_channel_description)
+            val notificationManager2 = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager2.createNotificationChannel(mChannel2)
+        }
+
+        updateConnection()
+
+        val notification = NotificationCompat.Builder(this, MAIN_CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_baseline_notifications_24)
+            .setContentTitle("Новости университета")
+            .setOngoing(true)
+            .setPriority(NotificationCompat.PRIORITY_MIN)
+            .build()
+        startForeground(1, notification)
+
+        return START_NOT_STICKY
     }
 
-    override fun onHandleWork(intent: Intent) {}
+    override fun onBind(intent: Intent?): IBinder? {
+        return null
+    }
 
     private fun onGetMessage(message: Message) {
         val sp = getSharedPreferences(packageName, Context.MODE_PRIVATE)
         if(Gson().fromJson(sp.getString(BaseActivity.USER_DATA_KEY, ""), User::class.java).id == message.from) return
-        if(isAppRunning) messagesObservable.onSuccess(message)
         else {
             val notificationIntent =
-                Intent(this, MainActivity::class.java)
+                Intent(this, SplashActivity::class.java)
             notificationIntent.putExtra("fragment", "news")
             val contentIntent = PendingIntent.getActivity(
                 this,
                 0, notificationIntent,
-                PendingIntent.FLAG_CANCEL_CURRENT
+                FLAG_CANCEL_CURRENT
             )
 
             val builder: NotificationCompat.Builder =
                 NotificationCompat.Builder(this, CHANNEL_ID)
-                    .setSmallIcon(R.mipmap.ic_launcher_foreground)
+                    .setOngoing(false)
+                    .setSmallIcon(R.drawable.ic_baseline_notifications_24)
                     .setContentTitle(message.title)
                     .setContentIntent(contentIntent)
-                    .setAutoCancel(true)
                     .setStyle(NotificationCompat.BigTextStyle().bigText(message.description))
                     .addAction(
                         R.drawable.ic_menu_send,
                         getString(R.string.system_alert_agree),
                         contentIntent
                     )
+                    .setAutoCancel(true)
                     .setPriority(NotificationCompat.PRIORITY_MAX)
 
             val notificationManager =
                 NotificationManagerCompat.from(this)
-            notificationManager.notify(1, builder.build())
+            notificationManager.notify(2, builder.build())
         }
     }
 
@@ -138,9 +157,7 @@ class MessagesService : JobIntentService() {
     }
 
     companion object {
-        val messagesObservable = SingleSubject.create<Message>()
-        var isAppRunning = false
-
-        private const val CHANNEL_ID = "main_channel"
+        private const val MAIN_CHANNEL_ID = "main_channel"
+        private const val CHANNEL_ID = "notify_channel"
     }
 }

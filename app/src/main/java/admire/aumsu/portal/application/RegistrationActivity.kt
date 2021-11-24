@@ -17,6 +17,8 @@ import retrofit2.Response
 
 class RegistrationActivity : BaseActivity() {
 
+    private var isRequest = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
@@ -68,6 +70,9 @@ class RegistrationActivity : BaseActivity() {
             return
         }
 
+        if (isRequest) return
+        isRequest = true
+
         val messages = service.registration(
             User(
                 first_name.text.toString(),
@@ -84,10 +89,12 @@ class RegistrationActivity : BaseActivity() {
 
         messages.enqueue(object : Callback<User> {
             override fun onFailure(call: Call<User>, t: Throwable) {
+                isRequest = false
                 Toast.makeText(this@RegistrationActivity, getString(R.string.system_response_authorisation_error), Toast.LENGTH_LONG).show()
             }
 
             override fun onResponse(call: Call<User>, response: Response<User>) {
+                isRequest = false
                 if(response.code() == 200) {
                     userData = response.body()
 

@@ -15,6 +15,8 @@ import android.content.Intent
 
 class LoginActivity : BaseActivity() {
 
+    private var isRequest = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -37,6 +39,9 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun authorization() {
+        if (isRequest) return
+        isRequest = true
+
         val service = getRetrofit().create(RequestAPI::class.java)
 
         val messages = service.authorization(
@@ -48,10 +53,12 @@ class LoginActivity : BaseActivity() {
 
         messages.enqueue(object : Callback<User> {
             override fun onFailure(call: Call<User>, t: Throwable) {
+                isRequest = false
                 Toast.makeText(this@LoginActivity, getString(R.string.system_response_authorisation_error), Toast.LENGTH_LONG).show()
             }
 
             override fun onResponse(call: Call<User>, response: Response<User>) {
+                isRequest = false
                 if(response.code() == 200) {
                     userData = response.body()
 

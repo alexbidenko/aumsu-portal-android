@@ -8,6 +8,6 @@ class Comment (
     val userId: Int,
     @SerializedName("message_id")
     val messageId: Int,
-    val content: String,
+    var content: String,
     var user: User?
 )

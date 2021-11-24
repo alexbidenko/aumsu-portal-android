@@ -28,6 +28,12 @@ interface RequestAPI {
     @POST("messages/comment")
     fun sendComment(@Body request: Comment, @Header("Authorization") token: String): Call<Comment>
 
+    @DELETE("messages/comment/{id}")
+    fun deleteComment(@Path("id") id: Int, @Header("Authorization") token: String): Call<Boolean>
+
+    @PUT("messages/comment/{id}")
+    fun updateComment(@Path("id") id: Int, @Body comment: Comment, @Header("Authorization") token: String): Call<Comment>
+
     @PUT("user")
     fun updateUser(@Body request: User, @Header("Authorization") token: String): Call<User>
 

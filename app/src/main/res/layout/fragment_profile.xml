@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -62,7 +64,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Имя"
-                    android:inputType="textNoSuggestions"
+                    android:inputType="textNoSuggestions|textCapWords"
                     android:maxLines="8" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -78,7 +80,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Фамилия"
-                    android:inputType="textNoSuggestions"
+                    android:inputType="textNoSuggestions|textCapWords"
                     android:maxLines="8" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -94,13 +96,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Отчество"
-                    android:inputType="textNoSuggestions"
+                    android:inputType="textNoSuggestions|textCapWords"
                     android:maxLines="8" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Сохранить"
@@ -110,4 +112,4 @@
 
     </LinearLayout>
 
-</androidx.core.widget.NestedScrollView>
+</ScrollView>

@@ -61,7 +61,8 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/content"
                         android:padding="8dp"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp"
+                        android:autoLink="all" />
 
                     <RelativeLayout
                         android:layout_width="match_parent"

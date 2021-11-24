@@ -10,6 +10,7 @@ import retrofit2.Response
 import admire.aumsu.portal.application.models.Authorization
 import admire.aumsu.portal.application.models.User
 import admire.aumsu.portal.application.retrofit.RequestAPI
+import android.util.Log
 
 class SplashActivity : BaseActivity() {
 
@@ -42,13 +43,14 @@ class SplashActivity : BaseActivity() {
                         sp.edit()
                             .putString(USER_DATA_KEY, Gson().toJson(userData))
                             .putString(USER_TOKEN_KEY, userData!!.token).apply()
+
+                        startActivity(MainActivity::class.java)
+                        finish()
                     } else {
                         Toast.makeText(this@SplashActivity, getString(R.string.system_response_authorisation_incorrect), Toast.LENGTH_LONG).show()
                     }
                 }
             })
-            startActivity(MainActivity::class.java)
-            finish()
         } else {
             startActivity(LoginActivity::class.java)
             finish()
