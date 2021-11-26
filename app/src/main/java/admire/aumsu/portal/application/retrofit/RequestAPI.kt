@@ -10,14 +10,14 @@ import admire.aumsu.portal.application.models.User
 
 interface RequestAPI {
 
+    @GET("version/{version}")
+    fun compareVersion(@Path("version") token: Int): Call<Boolean>
+
     @POST("login")
     fun authorization(@Body request: Authorization): Call<User>
 
     @POST("registration")
     fun registration(@Body request: User): Call<User>
-
-    @GET("messages/last")
-    fun getLastMessage(@Header("Authorization") token: String): Call<Message>
 
     @GET("messages")
     fun getMessages(@Header("Authorization") token: String): Call<ArrayList<Message>>
@@ -40,6 +40,14 @@ interface RequestAPI {
     @Multipart
     @PUT("user/avatar")
     fun updateAvatar(@Part avatar: MultipartBody.Part, @Header("Authorization") token: String): Call<User>
+
+    @Multipart
+    @PUT("user/password")
+    fun updatePassword(
+        @Part("password") password: String,
+        @Part("new_password") newPassword: String,
+        @Header("Authorization") token: String
+    ): Call<User>
 
     @Multipart
     @POST("messages")

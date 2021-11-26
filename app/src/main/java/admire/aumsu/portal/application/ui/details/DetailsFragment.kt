@@ -71,8 +71,8 @@ class DetailsFragment : Fragment() {
             override fun onResponse(call: Call<Message>, response: Response<Message>) {
                 Log.i("Admire", "Response " + response.code())
                 if(response.code() == 200) {
-                    requireView().title.text = response.body()!!.title.removeSurrounding("\"")
-                    requireView().content.text = response.body()!!.description.removeSurrounding("\"")
+                    requireView().title.text = response.body()!!.title
+                    requireView().content.text = response.body()!!.description
                     if (response.body()!!.image == "") {
                         requireView().title.setTextColor(ContextCompat.getColor(context!!, R.color.black))
                         requireView().photo.visibility = View.GONE

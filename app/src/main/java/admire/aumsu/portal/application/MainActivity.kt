@@ -1,5 +1,8 @@
 package admire.aumsu.portal.application
 
+import admire.aumsu.portal.application.models.Authorization
+import admire.aumsu.portal.application.models.User
+import admire.aumsu.portal.application.retrofit.RequestAPI
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.NotificationManager
@@ -23,6 +26,13 @@ import admire.aumsu.portal.application.services.MessagesService
 import android.net.Uri
 import android.widget.Toast
 import androidx.navigation.fragment.NavHostFragment
+
+import android.os.Build
+import com.google.gson.Gson
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 
 class MainActivity : BaseActivity() {
 
@@ -50,11 +60,9 @@ class MainActivity : BaseActivity() {
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home,
-                R.id.nav_gallery,
                 R.id.nav_slideshow,
-                R.id.nav_send,
-                R.id.nav_logout,
+                R.id.nav_gallery,
+                R.id.nav_home,
                 R.id.nav_profile
             ), drawerLayout
         )
@@ -66,10 +74,6 @@ class MainActivity : BaseActivity() {
         navView.getHeaderView(0).nav_header.setOnClickListener {
             navController.navigate(R.id.nav_profile)
             drawerLayout.close()
-        }
-
-        if(userData!!.status == "user") {
-            navView.menu.findItem(R.id.nav_send).isVisible = false
         }
 
         startService(Intent(applicationContext, MessagesService::class.java))
@@ -93,12 +97,20 @@ class MainActivity : BaseActivity() {
         })
 
         navView.menu.findItem(R.id.nav_feedback).setOnMenuItemClickListener {
+            val info = packageManager.getPackageInfo(packageName, 0)
+
             val intent = Intent(Intent.ACTION_SENDTO)
             intent.type = "text/plain"
             intent.data = Uri.parse("mailto:")
             intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.system_feedback_address)))
             intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.system_feedback_subject))
-            intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.system_feedback_preview))
+            intent.putExtra(
+                Intent.EXTRA_TEXT,
+                getString(R.string.system_feedback_preview) +
+                "\n\n\n\nВерсия приложения: " + info.versionName +
+                "\nВерсия сборки Android: " + Build.VERSION.SDK_INT +
+                "\nМодель телефона: " + Build.MANUFACTURER + " " + Build.MODEL
+            )
 
             try {
                 startActivity(Intent.createChooser(intent, getString(R.string.system_feedback_chooser)))
@@ -110,14 +122,62 @@ class MainActivity : BaseActivity() {
 
         if (intent.getStringExtra("fragment") == "news")
             navController.navigate(R.id.nav_slideshow)
+
+        updateUserData()
+        compareVersion()
     }
 
     fun updateNavHeader() {
         val navView: NavigationView = findViewById(R.id.nav_view)
         if (userData!!.avatar != "")
             Glide.with(this).load(getString(R.string.base_url) + "/files/avatars/" + userData!!.avatar).circleCrop().into(navView.getHeaderView(0).avatar)
-        navView.getHeaderView(0).name.text = userData!!.firstName + " " + userData!!.lastName
+        navView.getHeaderView(0).name.text = "${userData!!.firstName} ${userData!!.lastName}"
         navView.getHeaderView(0).email.text = userData!!.login
+    }
+
+    private fun updateUserData() {
+        val sp = getSharedPreferences(packageName, Context.MODE_PRIVATE)
+        val service = getRetrofit().create(RequestAPI::class.java)
+
+        val messages = service.authorization(
+            Authorization(
+                userData!!.login,
+                userData!!.password
+            )
+        )
+
+        messages.enqueue(object : Callback<User> {
+            override fun onFailure(call: Call<User>, t: Throwable) {}
+
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                if(response.code() == 200) {
+                    userData = response.body()
+
+                    sp.edit()
+                        .putString(USER_DATA_KEY, Gson().toJson(userData))
+                        .putString(USER_TOKEN_KEY, userData!!.token).apply()
+
+                    updateNavHeader()
+                }
+            }
+        })
+    }
+
+    private fun compareVersion() {
+        val pInfo = packageManager.getPackageInfo(packageName, 0)
+        val service = getRetrofit().create(RequestAPI::class.java)
+
+        val messages = service.compareVersion(pInfo.versionCode)
+
+        messages.enqueue(object : Callback<Boolean> {
+            override fun onFailure(call: Call<Boolean>, t: Throwable) {}
+
+            override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
+                if(response.code() == 200 && response.body() == false) {
+                    startActivityWithTransition(Intent(this@MainActivity, UpdateActivity::class.java))
+                }
+            }
+        })
     }
 
     override fun onResume() {
@@ -138,9 +198,5 @@ class MainActivity : BaseActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-    }
-
-    companion object {
-        private const val LAST_MESSAGE_ID_KEY = "last_message_id"
     }
 }

@@ -19,6 +19,8 @@ import admire.aumsu.portal.application.R
 import admire.aumsu.portal.application.models.Message
 import admire.aumsu.portal.application.retrofit.RequestAPI
 import android.view.View.GONE
+import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.fragment_news.*
 
 class NewsFragment : Fragment() {
 
@@ -43,6 +45,14 @@ class NewsFragment : Fragment() {
 
         if (detailsViewModel.isDataRequested) messagesLoad()
         else getMessages()
+
+        if(userData!!.status == "user") {
+            create_news.visibility = GONE
+        } else {
+            create_news.setOnClickListener {
+                findNavController().navigate(R.id.to_send)
+            }
+        }
     }
     
     private fun messagesLoad() {

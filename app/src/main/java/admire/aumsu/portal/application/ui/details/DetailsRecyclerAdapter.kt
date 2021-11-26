@@ -23,6 +23,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 import android.widget.EditText
+import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.redact_comment.view.*
 
 class DetailsRecyclerAdapter(
@@ -64,7 +65,14 @@ class DetailsRecyclerAdapter(
                                 editComment(itemView, item)
                             }
                             1 -> {
-                                deleteComment(itemView, item)
+                                AlertDialog.Builder(itemView.context)
+                                    .setMessage("Удалить комментарий?")
+                                    .setPositiveButton("Подтвердить") { _, _ ->
+                                        deleteComment(itemView, item)
+                                    }
+                                    .setNegativeButton("Отмена") { _, _ ->
+                                    }
+                                    .show()
                             }
                         }
                     }

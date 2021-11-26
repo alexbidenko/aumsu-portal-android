@@ -3,19 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
-
-    <fragment
-        android:id="@+id/nav_home"
-        android:name="admire.aumsu.portal.application.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
-
-    <fragment
-        android:id="@+id/nav_gallery"
-        android:name="admire.aumsu.portal.application.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+    app:startDestination="@+id/nav_slideshow">
 
     <fragment
         android:id="@+id/nav_slideshow"
@@ -29,7 +17,20 @@
             app:exitAnim="@anim/forward_close"
             app:popEnterAnim="@anim/back_open"
             app:popExitAnim="@anim/back_close" />
+        <action
+            android:id="@+id/to_send"
+            app:destination="@id/nav_send"
+            app:enterAnim="@anim/forward_open"
+            app:exitAnim="@anim/forward_close"
+            app:popEnterAnim="@anim/back_open"
+            app:popExitAnim="@anim/back_close" />
     </fragment>
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="admire.aumsu.portal.application.ui.gallery.GalleryFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_details"
@@ -46,6 +47,12 @@
         android:name="admire.aumsu.portal.application.ui.send.SendFragment"
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_send" />
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="admire.aumsu.portal.application.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_profile"

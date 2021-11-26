@@ -19,8 +19,8 @@ class PhotoFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_photo, container, false)
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         Glide.with(requireView().photo).load(requireArguments().getString(GALLERY_PHOTO_KEY)).into(requireView().photo)
     }

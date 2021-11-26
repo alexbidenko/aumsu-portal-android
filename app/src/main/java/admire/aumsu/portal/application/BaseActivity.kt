@@ -2,11 +2,11 @@ package admire.aumsu.portal.application
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
-import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import admire.aumsu.portal.application.models.User
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -41,14 +41,11 @@ abstract class BaseActivity : AppCompatActivity() {
     class PendingTransitionAnimation internal constructor(var open: Int, var close: Int)
 
     fun getRetrofit(): Retrofit {
-        val gson = GsonBuilder()
-                .setLenient()
-                .create()
-
         return Retrofit.Builder()
             .client(OkHttpClient().newBuilder().build())
             .baseUrl(getString(R.string.base_url) + "/api/")
-            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 

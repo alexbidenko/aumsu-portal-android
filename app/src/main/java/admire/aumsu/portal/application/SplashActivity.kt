@@ -22,35 +22,8 @@ class SplashActivity : BaseActivity() {
         if(sp.getString(USER_TOKEN_KEY, "") != "") {
             userData = Gson().fromJson(sp.getString(USER_DATA_KEY, ""), User::class.java)
 
-            val service = getRetrofit().create(RequestAPI::class.java)
-
-            val messages = service.authorization(
-                Authorization(
-                    userData!!.login,
-                    userData!!.password
-                )
-            )
-
-            messages.enqueue(object : Callback<User> {
-                override fun onFailure(call: Call<User>, t: Throwable) {
-                    Toast.makeText(this@SplashActivity, getString(R.string.system_response_authorisation_error), Toast.LENGTH_LONG).show()
-                }
-
-                override fun onResponse(call: Call<User>, response: Response<User>) {
-                    if(response.code() == 200) {
-                        userData = response.body()
-
-                        sp.edit()
-                            .putString(USER_DATA_KEY, Gson().toJson(userData))
-                            .putString(USER_TOKEN_KEY, userData!!.token).apply()
-
-                        startActivity(MainActivity::class.java)
-                        finish()
-                    } else {
-                        Toast.makeText(this@SplashActivity, getString(R.string.system_response_authorisation_incorrect), Toast.LENGTH_LONG).show()
-                    }
-                }
-            })
+            startActivity(MainActivity::class.java)
+            finish()
         } else {
             startActivity(LoginActivity::class.java)
             finish()

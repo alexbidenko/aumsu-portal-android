@@ -22,10 +22,10 @@
         android:id="@+id/gallery_layout"
         android:background="@android:color/black">
 
-        <androidx.viewpager.widget.ViewPager
+        <admire.aumsu.portal.application.ui.gallery.HorizontalViewPager
             android:id="@+id/opened_gallery"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
         <ImageButton
             android:layout_width="wrap_content"

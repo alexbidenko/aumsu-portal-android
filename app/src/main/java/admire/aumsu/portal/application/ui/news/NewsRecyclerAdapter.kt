@@ -34,14 +34,14 @@ class NewsRecyclerAdapter : RecyclerView.Adapter<NewsRecyclerAdapter.Holder>() {
         private val content = itemView.content
 
         fun bind(data: Message) {
-            title.text = data.title.removeSurrounding("\"")
+            title.text = data.title
             if (data.image == "") {
                 title.setTextColor(getColor(itemView.context, R.color.black))
                 photo.visibility = View.GONE
             } else {
                 Glide.with(photo).load(itemView.context.getString(R.string.base_url) + "/files/messages/images/" + data.image).into(photo)
             }
-            content.text = data.description.removeSurrounding("\"")
+            content.text = data.description
 
             itemView.setOnClickListener {
                 val bundle = bundleOf("messageId" to data.id)
