@@ -39,8 +39,6 @@ class NewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.news_line.layoutManager = LinearLayoutManager(context)
-        view.news_line.adapter = NewsRecyclerAdapter()
         Log.i("Admire", "onViewCreated")
 
         if (detailsViewModel.isDataRequested) messagesLoad()
@@ -56,9 +54,13 @@ class NewsFragment : Fragment() {
     }
     
     private fun messagesLoad() {
-        (requireView().news_line.adapter as NewsRecyclerAdapter).data = detailsViewModel.messages
-        requireView().news_line.adapter?.notifyDataSetChanged()
-        requireView().progress.visibility = GONE
+        if (view != null) {
+            val adapter = NewsRecyclerAdapter()
+            adapter.data = detailsViewModel.messages
+            requireView().news_line.layoutManager = LinearLayoutManager(context)
+            requireView().news_line.adapter = adapter
+            requireView().progress.visibility = GONE
+        }
     }
 
     private fun getMessages() {

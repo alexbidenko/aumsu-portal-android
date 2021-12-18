@@ -23,11 +23,17 @@ import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 import admire.aumsu.portal.application.services.MessagesService
+import android.app.NotificationChannel
 import android.net.Uri
 import android.widget.Toast
 import androidx.navigation.fragment.NavHostFragment
 
 import android.os.Build
+import android.util.Log
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.messaging.ktx.messaging
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
@@ -76,8 +82,6 @@ class MainActivity : BaseActivity() {
             drawerLayout.close()
         }
 
-        startService(Intent(applicationContext, MessagesService::class.java))
-
         drawerLayout.addDrawerListener(object : DrawerLayout.DrawerListener {
             override fun onDrawerStateChanged(newState: Int) {
                 val imm = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -125,6 +129,20 @@ class MainActivity : BaseActivity() {
 
         updateUserData()
         compareVersion()
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val mChannel = NotificationChannel(
+                MessagesService.CHANNEL_ID,
+                getString(R.string.system_notification_channel_name),
+                importance
+            )
+            mChannel.description = getString(R.string.system_notification_channel_description)
+            val notificationManager2 = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager2.createNotificationChannel(mChannel)
+        }
+
+        Firebase.messaging.subscribeToTopic("messages")
     }
 
     fun updateNavHeader() {

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "488426531235",
+    "project_id": "aumsu-portal",
+    "storage_bucket": "aumsu-portal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:488426531235:android:aaed0b68763fbfd25ad216",
+        "android_client_info": {
+          "package_name": "admire.aumsu.portal.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "488426531235-v8qoe7btv7kcvlhca54i0bo8pqhuric2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXuvIvL1GMUQ3j92UM_z8gNt6TW873OIE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "488426531235-v8qoe7btv7kcvlhca54i0bo8pqhuric2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

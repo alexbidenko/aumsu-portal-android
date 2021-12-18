@@ -12,6 +12,7 @@ import com.jsibbold.zoomage.ZoomageView
 class GalleryFragmentPagerAdapter(fm: FragmentManager, private val photos: Array<GalleryPhoto>) : FragmentStatePagerAdapter(fm) {
 
     var activeView: View? = null
+    lateinit var containerView: View
 
     override fun getItem(position: Int): Fragment {
         val fragment = PhotoFragment()

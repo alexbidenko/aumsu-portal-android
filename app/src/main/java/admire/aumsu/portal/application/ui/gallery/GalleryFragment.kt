@@ -11,13 +11,9 @@ import admire.aumsu.portal.application.models.GalleryPhoto
 import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
-import android.graphics.Matrix
 import android.util.Log
 import android.view.*
 import android.view.View.GONE
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
-import androidx.fragment.app.FragmentStatePagerAdapter
 import com.jsibbold.zoomage.ZoomageView
 import kotlin.math.abs
 
@@ -75,10 +71,17 @@ class GalleryFragment : Fragment() {
                     currentChild?.onTouchEvent(event)
                 }
                 MotionEvent.ACTION_UP -> {
+                    val currentYPosition = view.gallery_layout.y
+
                     view.gallery_layout.y = 0F
                     isScrollingUp = false
                     isScrollingDown = false
                     currentChild?.onTouchEvent(event)
+
+                    if (baseLayoutPosition - currentYPosition > defaultViewHeight / 12) {
+                        closeUpAndDismissDialog(currentYPosition)
+                        return@addAdditionTouchListener true
+                    }
                 }
                 MotionEvent.ACTION_MOVE -> if (!isClosing) {
                     x2 = event.x
@@ -94,27 +97,22 @@ class GalleryFragment : Fragment() {
                         return@addAdditionTouchListener false
                     }
 
-                    val currentYPosition = view.gallery_layout.y
-
                     if (previousFingerPosition > y) {
                         if (!isScrollingUp) {
                             isScrollingUp = true
                         }
 
                         view.gallery_layout.y = view.gallery_layout.y + (y - previousFingerPosition)
-
-                        if (baseLayoutPosition - currentYPosition > defaultViewHeight / 12) {
-                            closeUpAndDismissDialog(currentYPosition)
-                            return@addAdditionTouchListener true
-                        }
                     } else if (isScrollingUp) {
 
                         if (!isScrollingDown) {
                             isScrollingDown = true
                         }
 
-                        view.gallery_layout.y = min(baseLayoutPosition, view.gallery_layout.y + (y - previousFingerPosition))
-                        view.gallery_layout.requestLayout()
+                        if (abs(y - previousFingerPosition) > 2) {
+                            view.gallery_layout.y = min(baseLayoutPosition, view.gallery_layout.y + (y - previousFingerPosition))
+                            view.gallery_layout.requestLayout()
+                        }
                     }
 
                     previousFingerPosition = y
@@ -158,9 +156,12 @@ class GalleryFragment : Fragment() {
         view.gallery.layoutManager = GridLayoutManager(context, 3)
 
         val pagerAdapter = GalleryFragmentPagerAdapter(requireActivity().supportFragmentManager, photos)
+        pagerAdapter.containerView = view.gallery_layout
         view.opened_gallery.adapter = pagerAdapter
 
         view.gallery_back.setOnClickListener {
+            val currentChild = (view.opened_gallery.adapter as GalleryFragmentPagerAdapter).activeView as ZoomageView?
+            currentChild?.reset()
             view.gallery_layout.visibility = GONE
         }
     }
