@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import admire.aumsu.portal.application.BaseActivity
 import admire.aumsu.portal.application.MainActivity
 import admire.aumsu.portal.application.R
+import admire.aumsu.portal.application.models.StudyGroup
 import admire.aumsu.portal.application.models.User
 import admire.aumsu.portal.application.retrofit.RequestAPI
 import android.app.Activity
@@ -18,11 +19,11 @@ import android.net.Uri
 import android.util.Log
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.github.dhaval2404.imagepicker.ImagePicker
-import com.google.gson.Gson
 import com.isseiaoki.simplecropview.CropImageView
 import com.isseiaoki.simplecropview.callback.CropCallback
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -38,6 +39,7 @@ import com.isseiaoki.simplecropview.callback.LoadCallback
 import java.io.*
 
 import androidx.appcompat.app.AlertDialog
+import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import kotlinx.android.synthetic.main.change_password.view.*
 import kotlinx.android.synthetic.main.redact_comment.view.*
 import okhttp3.RequestBody
@@ -49,6 +51,7 @@ class ProfileFragment : Fragment() {
     private var isRequest = false
     private var isRequestAvatar = false
     private var image: Uri? = null
+    private var studyGroups = ArrayList<StudyGroup>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -70,6 +73,7 @@ class ProfileFragment : Fragment() {
         first_name.setText(BaseActivity.userData!!.firstName)
         last_name.setText(BaseActivity.userData!!.lastName)
         patronymic.setText(BaseActivity.userData!!.patronymic)
+        study_group.setText(BaseActivity.userData!!.studyGroup?.name ?: "")
 
         change_avatar.setOnClickListener {
             ImagePicker.with(this)
@@ -115,6 +119,9 @@ class ProfileFragment : Fragment() {
         update_password.setOnClickListener {
             openChangePassword()
         }
+
+        Log.i("Admire", "test" + (BaseActivity.userData?.studyGroup?.name ?: "test"))
+        getStudyGroups()
     }
 
     private fun convertBitmapToFile(bitmap: Bitmap): File {
@@ -148,6 +155,7 @@ class ProfileFragment : Fragment() {
         this.isRequest = true
         val service = (activity as BaseActivity).getRetrofit().create(RequestAPI::class.java)
 
+        val studyGroup = studyGroups.find { it.name == study_group.text.toString() }?.id
         val messages = service.updateUser(User(
             first_name.text.toString(),
             last_name.text.toString(),
@@ -157,6 +165,7 @@ class ProfileFragment : Fragment() {
             "",
             "",
             patronymic.text.toString(),
+            studyGroup,
             0
         ), BaseActivity.userData!!.token)
         messages.enqueue(object : Callback<User> {
@@ -172,7 +181,7 @@ class ProfileFragment : Fragment() {
                 if (response.code() == 200) {
                     this@ProfileFragment.isRequest = false
                     BaseActivity.userData = response.body()!!
-                    sp.edit().putString(BaseActivity.USER_DATA_KEY, Gson().toJson(BaseActivity.userData)).apply()
+                    sp.edit().putString(BaseActivity.USER_DATA_KEY, BaseActivity.gson.toJson(BaseActivity.userData)).apply()
                     (requireActivity() as MainActivity).updateNavHeader()
                     Toast.makeText(context, "Данные профиля успешно обновлены", Toast.LENGTH_LONG).show()
                 } else {
@@ -199,7 +208,7 @@ class ProfileFragment : Fragment() {
             ) {
                 if (response.code() == 200) {
                     BaseActivity.userData = response.body()!!
-                    sp.edit().putString(BaseActivity.USER_DATA_KEY, Gson().toJson(BaseActivity.userData)).apply()
+                    sp.edit().putString(BaseActivity.USER_DATA_KEY, BaseActivity.gson.toJson(BaseActivity.userData)).apply()
                     Toast.makeText(context, "Пароль успешно обновлен", Toast.LENGTH_LONG).show()
                 } else {
                     Log.i("Admire", "Error: " + response.code() + " | " + response.errorBody()?.string())
@@ -249,7 +258,7 @@ class ProfileFragment : Fragment() {
                 this@ProfileFragment.isRequestAvatar = false
                 if (response.code() == 200) {
                     BaseActivity.userData = response.body()!!
-                    sp.edit().putString(BaseActivity.USER_DATA_KEY, Gson().toJson(BaseActivity.userData)).apply()
+                    sp.edit().putString(BaseActivity.USER_DATA_KEY, BaseActivity.gson.toJson(BaseActivity.userData)).apply()
                     Glide.with(requireView()).load(getString(R.string.base_url) + "/files/avatars/" + BaseActivity.userData!!.avatar).circleCrop().into(avatar)
                     (requireActivity() as MainActivity).updateNavHeader()
                     Log.i("Admire", "Avatar updated")
@@ -287,6 +296,38 @@ class ProfileFragment : Fragment() {
             }
         }
         alertDialog.show()
+    }
+
+    private fun getStudyGroups() {
+        val service = (activity as BaseActivity).getRetrofit().create(RequestAPI::class.java)
+
+        val messages = service.getStudyGroups()
+
+        messages.enqueue(object : Callback<ArrayList<StudyGroup>> {
+            override fun onFailure(call: Call<ArrayList<StudyGroup>>, t: Throwable) {
+                Toast.makeText(context, "При запросе групп произошла ошибка", Toast.LENGTH_LONG).show()
+            }
+
+            override fun onResponse(call: Call<ArrayList<StudyGroup>>, response: Response<ArrayList<StudyGroup>>) {
+                Log.i("Admire", "Response " + response.code())
+                if(response.code() == 200) {
+                    studyGroups = response.body()!!
+                    val adapter = ArrayAdapter(
+                        requireContext(), android.R.layout.simple_dropdown_item_1line, studyGroups.map { it.name }
+                    )
+                    requireView().study_group.setAdapter(adapter)
+                    requireView().study_group.threshold = 0
+                    requireView().study_group.setOnFocusChangeListener { v, _ ->
+                        val search = v as MaterialAutoCompleteTextView
+                        studyGroups.find { search.text.toString() == it.name }.let {
+                            if (it == null) {
+                                search.setText("")
+                            }
+                        }
+                    }
+                }
+            }
+        })
     }
 
     private val mLoadCallback: LoadCallback = object : LoadCallback {

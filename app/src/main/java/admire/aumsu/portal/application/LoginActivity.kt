@@ -64,7 +64,7 @@ class LoginActivity : BaseActivity() {
 
                     val sp = getSharedPreferences(packageName, Context.MODE_PRIVATE)
                     sp.edit()
-                        .putString(USER_DATA_KEY, Gson().toJson(userData))
+                        .putString(USER_DATA_KEY, gson.toJson(userData))
                         .putString(USER_TOKEN_KEY, userData!!.token).apply()
 
                     startActivity(MainActivity::class.java)

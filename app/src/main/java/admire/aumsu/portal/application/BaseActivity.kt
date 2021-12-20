@@ -7,6 +7,14 @@ import retrofit2.Retrofit
 import admire.aumsu.portal.application.models.User
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import com.google.gson.FieldNamingPolicy
+
+import com.google.gson.GsonBuilder
+
+import com.google.gson.Gson
+
+
+
 
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -45,7 +53,7 @@ abstract class BaseActivity : AppCompatActivity() {
             .client(OkHttpClient().newBuilder().build())
             .baseUrl(getString(R.string.base_url) + "/api/")
             .addConverterFactory(ScalarsConverterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }
 
@@ -57,5 +65,9 @@ abstract class BaseActivity : AppCompatActivity() {
         const val AUTHORIZATION_PASSWORD_KEY = "authorization_password_key"
 
         var userData: User? = null
+
+        val gson = GsonBuilder()
+            .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+            .create()!!
     }
 }

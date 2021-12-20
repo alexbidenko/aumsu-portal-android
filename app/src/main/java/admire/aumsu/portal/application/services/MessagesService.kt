@@ -33,7 +33,7 @@ class MessagesService : FirebaseMessagingService() {
 
     private fun onGetMessage(title: String, description: String, from: Int) {
         val sp = getSharedPreferences(packageName, Context.MODE_PRIVATE)
-        if(Gson().fromJson(sp.getString(BaseActivity.USER_DATA_KEY, ""), User::class.java).id == from) return
+        if(BaseActivity.gson.fromJson(sp.getString(BaseActivity.USER_DATA_KEY, ""), User::class.java).id == from) return
         else {
             val notificationIntent =
                 Intent(this, SplashActivity::class.java)

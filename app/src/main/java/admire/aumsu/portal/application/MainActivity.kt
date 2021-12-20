@@ -29,12 +29,9 @@ import android.widget.Toast
 import androidx.navigation.fragment.NavHostFragment
 
 import android.os.Build
-import android.util.Log
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.ktx.messaging
-import com.google.gson.Gson
+import kotlinx.android.synthetic.main.fragment_home.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -99,6 +96,18 @@ class MainActivity : BaseActivity() {
             override fun onDrawerOpened(drawerView: View) {}
 
         })
+
+        navView.menu.findItem(R.id.nav_schedule).setOnMenuItemClickListener {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://aumsu-schedule.admire.social/?token=${userData!!.token}"))
+            startActivity(browserIntent)
+            true
+        }
+
+        navView.menu.findItem(R.id.nav_vacancies).setOnMenuItemClickListener {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://aumsuvacancy.ru.swtest.ru"))
+            startActivity(browserIntent)
+            true
+        }
 
         navView.menu.findItem(R.id.nav_feedback).setOnMenuItemClickListener {
             val info = packageManager.getPackageInfo(packageName, 0)
@@ -172,7 +181,7 @@ class MainActivity : BaseActivity() {
                     userData = response.body()
 
                     sp.edit()
-                        .putString(USER_DATA_KEY, Gson().toJson(userData))
+                        .putString(USER_DATA_KEY, gson.toJson(userData))
                         .putString(USER_TOKEN_KEY, userData!!.token).apply()
 
                     updateNavHeader()

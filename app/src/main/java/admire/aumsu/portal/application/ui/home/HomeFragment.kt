@@ -1,5 +1,6 @@
 package admire.aumsu.portal.application.ui.home
 
+import admire.aumsu.portal.application.BaseActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import admire.aumsu.portal.application.R
+import android.content.Intent
+import android.net.Uri
+import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
 
@@ -32,6 +36,14 @@ class HomeFragment : Fragment() {
         }
         view.to_news.setOnClickListener {
             findNavController().navigate(R.id.nav_slideshow)
+        }
+        view.to_schedule.setOnClickListener {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://aumsu-schedule.admire.social/?token=${BaseActivity.userData!!.token}"))
+            startActivity(browserIntent)
+        }
+        view.to_vacancies.setOnClickListener {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://aumsuvacancy.ru.swtest.ru"))
+            startActivity(browserIntent)
         }
     }
 }

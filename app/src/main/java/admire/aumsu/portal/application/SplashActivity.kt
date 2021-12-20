@@ -20,7 +20,9 @@ class SplashActivity : BaseActivity() {
         setTheme(R.style.AppTheme)
         val sp = getSharedPreferences(packageName, Context.MODE_PRIVATE)
         if(sp.getString(USER_TOKEN_KEY, "") != "") {
-            userData = Gson().fromJson(sp.getString(USER_DATA_KEY, ""), User::class.java)
+            Log.i("Admire", "test" + sp.getString(USER_DATA_KEY, "")!!)
+            userData = gson.fromJson(sp.getString(USER_DATA_KEY, ""), User::class.java)
+            Log.i("Admire", "test" + (userData?.studyGroup?.name ?: "test"))
 
             startActivity(MainActivity::class.java)
             finish()

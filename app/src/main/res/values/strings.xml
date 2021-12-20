@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">AUMSU Portal</string>
     <string name="base_url">https://aumsu-portal.admire.social</string>
+<!--    <string name="base_url">http://192.168.0.161:8010</string>-->
 
     <string name="nav_header_desc">Аватар пользователя</string>
 

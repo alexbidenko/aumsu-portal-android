@@ -1,5 +1,6 @@
 package admire.aumsu.portal.application.ui.gallery
 
+import admire.aumsu.portal.application.BaseActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -145,7 +146,7 @@ class GalleryFragment : Fragment() {
     }
 
     private fun getPhotos(view: View) {
-        val photos = Gson().fromJson(data, Array<GalleryPhoto>::class.java)
+        val photos = BaseActivity.gson.fromJson(data, Array<GalleryPhoto>::class.java)
         view.gallery.adapter = GalleryTable(photos, object : GalleryTable.OnChoosePhoto {
             override fun onChoose(position: Int) {
                 Log.i("Admire", "Open image: $position")
@@ -173,6 +174,6 @@ class GalleryFragment : Fragment() {
     }
 
     companion object {
-        const val data = """[{"photoUrl":"https://www.aumsu.ru/images/news/04.2021/6.jpg"},{"photoUrl":"https://www.aumsu.ru/images/news/04.2021/7.jpg"},{"photoUrl":"https://www.aumsu.ru/images/news/04.2021/8.jpg"},{"photoUrl":"https://www.aumsu.ru/images/news/04.2021/9.jpg"},{"photoUrl":"https://www.aumsu.ru/images/news/04.2021/15.jpg"},{"photoUrl":"https://www.aumsu.ru/images/news/04.2021/16.jpg"},{"photoUrl":"https://www.aumsu.ru/images/news/04.2021/17.jpg"},{"photoUrl":"https://www.aumsu.ru/images/news/04.2021/18.jpg"},{"photoUrl":"https://www.aumsu.ru/images/news/04.2021/19.jpg"},{"photoUrl":"https://www.aumsu.ru/images/news/04.2021/20.jpg"},{"photoUrl":"https://www.aumsu.ru/images/news/04.2021/20.jpg"},{"photoUrl":"https://www.aumsu.ru/images/news/04.2021/1.jpg"},{"photoUrl":"https://www.aumsu.ru/images/news/04.2021/2.jpg"}]"""
+        const val data = """[{"photo_url":"https://www.aumsu.ru/images/news/04.2021/6.jpg"},{"photo_url":"https://www.aumsu.ru/images/news/04.2021/7.jpg"},{"photo_url":"https://www.aumsu.ru/images/news/04.2021/8.jpg"},{"photo_url":"https://www.aumsu.ru/images/news/04.2021/9.jpg"},{"photo_url":"https://www.aumsu.ru/images/news/04.2021/15.jpg"},{"photo_url":"https://www.aumsu.ru/images/news/04.2021/16.jpg"},{"photo_url":"https://www.aumsu.ru/images/news/04.2021/17.jpg"},{"photo_url":"https://www.aumsu.ru/images/news/04.2021/18.jpg"},{"photo_url":"https://www.aumsu.ru/images/news/04.2021/19.jpg"},{"photo_url":"https://www.aumsu.ru/images/news/04.2021/20.jpg"},{"photo_url":"https://www.aumsu.ru/images/news/04.2021/20.jpg"},{"photo_url":"https://www.aumsu.ru/images/news/04.2021/1.jpg"},{"photo_url":"https://www.aumsu.ru/images/news/04.2021/2.jpg"}]"""
     }
 }
