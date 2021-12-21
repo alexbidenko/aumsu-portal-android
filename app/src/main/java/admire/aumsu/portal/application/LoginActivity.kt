@@ -6,7 +6,6 @@ import admire.aumsu.portal.application.models.User
 import android.widget.Toast
 import android.content.Context
 import admire.aumsu.portal.application.retrofit.RequestAPI
-import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

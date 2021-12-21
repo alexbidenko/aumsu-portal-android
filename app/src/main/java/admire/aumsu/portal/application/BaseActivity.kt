@@ -8,14 +8,7 @@ import admire.aumsu.portal.application.models.User
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import com.google.gson.FieldNamingPolicy
-
 import com.google.gson.GsonBuilder
-
-import com.google.gson.Gson
-
-
-
-
 
 abstract class BaseActivity : AppCompatActivity() {
 

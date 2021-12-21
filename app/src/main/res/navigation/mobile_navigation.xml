@@ -35,7 +35,7 @@
     <fragment
         android:id="@+id/nav_details"
         android:name="admire.aumsu.portal.application.ui.details.DetailsFragment"
-        android:label="Подробности новости">
+        android:label="Подробности">
         <argument
             android:name="messageId"
             app:argType="integer"

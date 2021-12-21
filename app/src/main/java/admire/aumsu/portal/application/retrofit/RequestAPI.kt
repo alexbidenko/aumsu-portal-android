@@ -37,6 +37,9 @@ interface RequestAPI {
     @PUT("user")
     fun updateUser(@Body request: User, @Header("Authorization") token: String): Call<User>
 
+    @GET("user")
+    fun getUser(@Header("Authorization") token: String): Call<User>
+
     @Multipart
     @PUT("user/avatar")
     fun updateAvatar(@Part avatar: MultipartBody.Part, @Header("Authorization") token: String): Call<User>

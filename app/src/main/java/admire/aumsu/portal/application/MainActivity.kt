@@ -1,6 +1,5 @@
 package admire.aumsu.portal.application
 
-import admire.aumsu.portal.application.models.Authorization
 import admire.aumsu.portal.application.models.User
 import admire.aumsu.portal.application.retrofit.RequestAPI
 import android.annotation.SuppressLint
@@ -27,7 +26,6 @@ import android.app.NotificationChannel
 import android.net.Uri
 import android.widget.Toast
 import androidx.navigation.fragment.NavHostFragment
-
 import android.os.Build
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.ktx.messaging
@@ -35,7 +33,6 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
 
 class MainActivity : BaseActivity() {
 
@@ -45,11 +42,13 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if(userData == null) {
+        val sp = getSharedPreferences(packageName, Context.MODE_PRIVATE)
+        if(sp.getString(USER_TOKEN_KEY, "") == "") {
             startActivity(LoginActivity::class.java)
             finish()
             return
         }
+        userData = gson.fromJson(sp.getString(USER_DATA_KEY, ""), User::class.java)
 
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
@@ -166,12 +165,7 @@ class MainActivity : BaseActivity() {
         val sp = getSharedPreferences(packageName, Context.MODE_PRIVATE)
         val service = getRetrofit().create(RequestAPI::class.java)
 
-        val messages = service.authorization(
-            Authorization(
-                userData!!.login,
-                userData!!.password
-            )
-        )
+        val messages = service.getUser(userData!!.token)
 
         messages.enqueue(object : Callback<User> {
             override fun onFailure(call: Call<User>, t: Throwable) {}

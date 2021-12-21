@@ -7,7 +7,6 @@ import android.widget.Toast
 import android.content.Context
 import admire.aumsu.portal.application.retrofit.RequestAPI
 import android.content.Intent
-import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_registration.login
 import kotlinx.android.synthetic.main.activity_registration.password
 import kotlinx.android.synthetic.main.activity_registration.view.*

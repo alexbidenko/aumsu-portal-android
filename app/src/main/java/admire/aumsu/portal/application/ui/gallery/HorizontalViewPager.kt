@@ -36,7 +36,7 @@ class HorizontalViewPager(context: Context, attrs: AttributeSet) : ViewPager(con
         val view = galleryAdapter.activeView as ZoomageView?
         val values = FloatArray(9)
         view?.imageMatrix?.getValues(values)
-        if (view != null && !(values[0] == 1f && values[4] == 1f && values[8] == 1f)) {
+        if (view != null && (!(values[0] == 1f && values[4] == 1f && values[8] == 1f) || ev?.pointerCount ?: 0 > 1)) {
             view.onTouchEvent(ev)
             currentItem = currentItem
             if (ev?.action == MotionEvent.ACTION_UP) {
